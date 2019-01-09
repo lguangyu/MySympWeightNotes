@@ -15,8 +15,19 @@ PLOT_GROUP_CONFIGS = [
 ]
 
 START_DATE = datetime.date(2019, 1, 4)
-END_DATE = datetime.date(2019, 3, 20)
-DATE_DELTA = datetime.timedelta(days = 15)
+END_DATE = datetime.date(2019, 3, 31)
+DATE_TICKS = [
+	datetime.date(2019, 1, 4),
+	datetime.date(2019, 1, 10),
+	datetime.date(2019, 1, 20),
+	datetime.date(2019, 2, 1),
+	datetime.date(2019, 2, 10),
+	datetime.date(2019, 2, 20),
+	datetime.date(2019, 3, 1),
+	datetime.date(2019, 3, 10),
+	datetime.date(2019, 3, 20),
+	datetime.date(2019, 3, 31),
+]
 
 
 def get_args():
@@ -29,7 +40,8 @@ def get_args():
 
 def parse_data_file(fname):
 	with open(fname, "r") as fh:
-		txt = [i.split(",") for i in fh.read().splitlines()]
+		txt = [i.split(",") for i in fh.read().splitlines()
+			if (i and i[0] != "#")]
 	dates = numpy.asarray([datetime.datetime.strptime(i[0], "%Y-%m-%d") for i in txt],
 		dtype = object)
 	data = numpy.asarray([i[1:] for i in txt], dtype = float)
@@ -49,10 +61,11 @@ def date_range(start, end, step):
 def hdl_plot(dates, data):
 	figure, axes = pyplot.subplots(nrows = len(PLOT_GROUP_CONFIGS), ncols = 1,
 		figsize = (8, 8), sharex = True)
-	pyplot.subplots_adjust(hspace = 0)
+	pyplot.subplots_adjust(left = 0.10, right = 0.95, top = 0.95, bottom = 0.06,
+		hspace = 0.09)
 	for ax, cfg in zip(axes, PLOT_GROUP_CONFIGS):
 		plot_tracking(ax, dates, data, cfg)
-	figure.tight_layout()
+	figure.align_ylabels(axes)
 	return
 
 
@@ -77,7 +90,9 @@ def plot_tracking(ax, x, data, cfg):
 	ax.set_xlim(START_DATE, END_DATE)
 	ax.set_ylim(*cfg["ylim"])
 	ax.set_ylabel(cfg["ylabel"])
-	#ax.set_xticks(date_range(START_DATE, END_DATE, DATE_DELTA))
+	ax.set_xticks(DATE_TICKS)
+	xtick_fmt = matplotlib.dates.DateFormatter("%m-%d")
+	ax.xaxis.set_major_formatter(xtick_fmt)
 	return
 
 
