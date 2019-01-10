@@ -3,7 +3,7 @@ show: recent_plan
 
 .PHONY: recent_plan
 recent_plan:
-	./visualize.py data/plan_2019-03.tsv
+	./visualize.py data/plan_2019-03.csv
 
 .PHONY: git
 git:

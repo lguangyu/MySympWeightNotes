@@ -91,7 +91,7 @@ def plot_tracking(ax, x, data, cfg):
 	ax.set_ylim(*cfg["ylim"])
 	ax.set_ylabel(cfg["ylabel"])
 	ax.set_xticks(DATE_TICKS)
-	xtick_fmt = matplotlib.dates.DateFormatter("%m-%d")
+	xtick_fmt = matplotlib.dates.DateFormatter("%b-%d")
 	ax.xaxis.set_major_formatter(xtick_fmt)
 	return
 
