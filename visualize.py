@@ -14,10 +14,10 @@ PLOT_GROUP_CONFIGS = [
 	dict(cols = (4, 5), goal = 34, ylim = (30, 40), coef = 1.000, ylabel = "LLC (cm)"),
 ]
 
-START_DATE = datetime.date(2019, 1, 4)
+START_DATE = datetime.date(2019, 1, 5)
 END_DATE = datetime.date(2019, 3, 31)
 DATE_TICKS = [
-	datetime.date(2019, 1, 4),
+	datetime.date(2019, 1, 5),
 	datetime.date(2019, 1, 10),
 	datetime.date(2019, 1, 20),
 	datetime.date(2019, 2, 1),
@@ -77,7 +77,7 @@ def plot_tracking(ax, x, data, cfg):
 	mask_above = y > goal
 	mask_below = y <= goal
 	ax.plot(x, y, linestyle = "-", linewidth = 1.5, color = "#4040FF",
-		marker = "o", markersize = 4.5, markeredgewidth = 1.0,
+		marker = "o", markersize = 4.5, markeredgewidth = 1.0, clip_on = False,
 		markeredgecolor = "#4040FF", markerfacecolor = "#FFFFFF")
 	for mask, color in zip([mask_above, mask_below], ["#4040FF40", "#40FF4040"]):
 		mx = x[mask]
