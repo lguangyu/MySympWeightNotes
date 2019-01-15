@@ -11,7 +11,7 @@ import datetime
 PLOT_GROUP_CONFIGS = [
 	dict(cols = (0, 1), goal = 55, ylim = (40, 70), coef = 0.454, ylabel = "WT (kg)"),
 	dict(cols = (2, 3), goal = 66, ylim = (60, 80), coef = 1.000, ylabel = "WS (cm)"),
-	dict(cols = (4, 5), goal = 34, ylim = (30, 40), coef = 1.000, ylabel = "LLC (cm)"),
+	dict(cols = (4, 5), goal = 34, ylim = (30, 40), coef = 1.000, ylabel = "CS (cm)"),
 ]
 
 START_DATE = datetime.date(2019, 1, 5)
