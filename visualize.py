@@ -70,9 +70,14 @@ def hdl_plot(dates, data):
 
 
 def plot_tracking(ax, x, data, cfg):
+	# appearance
+	for sp in ax.spines.values():
+		sp.set_visible(False)
+	ax.set_facecolor("#F0F0F0")
+	ax.grid(linestyle = "-", linewidth = 1.0, color = "#FFFFFF")
+	#
 	goal = cfg["goal"]
 	cols = cfg["cols"]
-	#
 	y = numpy.nanmean(data[:, cols], axis = 1) * cfg["coef"]
 	mask_above = y > goal
 	mask_below = y <= goal
