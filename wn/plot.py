@@ -111,3 +111,10 @@ class Plot(base_m.NoteBase):
 		self.matplotlib.pyplot.show()
 		self.matplotlib.pyplot.close()
 		return
+
+
+	def plot_and_save(self, file):
+		self._plot_profiles()
+		self.matplotlib.pyplot.savefig(file)
+		self.matplotlib.pyplot.close()
+		return

@@ -1,11 +1,23 @@
 #!/usr/bin/env python3
 
-import wn
+import sys
 import datetime
+import argparse
+import wn
+
+
+def get_args(argv = sys.argv[1:]):
+	ap = argparse.ArgumentParser()
+	ap.add_argument("-o", "--output",
+		type = str, metavar = "png", default = None,
+		help = "output to this <png> file")
+	args = ap.parse_args(argv)
+	return args
 
 
 class PlanNotes(wn.RecordNotes):
 	pass
+
 
 PlanNotes.add_config(cols = (0, 1), goal = 55,
 	plot_range = (40, 70), plot_coef = 0.454, plot_label = "WT (kg)"),
@@ -29,5 +41,9 @@ PlanNotes.set_date_ticks([
 
 
 if __name__ == "__main__":
+	args = get_args()
 	rn = PlanNotes("plan_2019-03.data.csv")
-	rn.plot_and_show()
+	if args.output is None:
+		rn.plot_and_show()
+	else:
+		rn.plot_and_save(args.output)
