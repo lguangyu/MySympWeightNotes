@@ -21,7 +21,7 @@ class PlanNotes(wn.RecordNotes):
 
 PlanNotes.add_config(cols = (0, 1), goal = 55,
 	plot_range = (40, 70), plot_coef = 0.454, plot_label = "WT (kg)"),
-PlanNotes.add_config(cols = (2, 3), goal = 66,
+PlanNotes.add_config(cols = (2, 3), goal = 66.66,
 	plot_range = (60, 80), plot_coef = 1.000, plot_label = "WS (cm)"),
 PlanNotes.add_config(cols = (4, 5), goal = 34,
 	plot_range = (30, 40), plot_coef = 1.000, plot_label = "CS (cm)"),
